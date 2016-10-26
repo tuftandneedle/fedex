@@ -26,10 +26,11 @@ module Fedex
 
       def process_request
         api_response = self.class.post(api_url, :body => build_xml)
-        puts api_response if @debug == true
+        puts api_response
         response = parse_response(api_response)
 
         if success?(response)
+          puts response.to_yaml
           options = response[:track_reply][:track_details]
 
           if response[:track_reply][:duplicate_waybill].downcase == 'true'

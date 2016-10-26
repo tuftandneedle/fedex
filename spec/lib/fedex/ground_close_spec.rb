@@ -29,12 +29,12 @@ module Fedex
         it "completes with success result" do
           # When running this spec you may need to uncomment the line below to allow shipment to be created before close request
           #sleep(7)
-          expect{ fedex.ground_close(:up_to_time => Time.now, :filename => filename) }.to_not raise_error
+          expect { fedex.ground_close(:up_to_time => Time.now) }.to raise_error(Fedex::RateError, 'No Shipments to Close')
         end
       end
       context "raise an error when there aren't any existing shipments to close", :vcr do
         it "raises an error" do
-          expect { fedex.ground_close(:up_to_time => Time.now) }.to raise_error(Fedex::RateError, 'No Shipments to Close')
+          expect{ fedex.ground_close(:up_to_time => Time.now, :filename => filename) }.to_not raise_error
         end
       end
     end

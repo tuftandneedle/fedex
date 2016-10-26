@@ -3,7 +3,7 @@ require 'fedex/shipment'
 
 describe Fedex::Request::Pickup do
   describe "pickup service" do
-    let(:fedex) { Fedex::Shipment.new(fedex_production_credentials) }
+    let(:fedex) { Fedex::Shipment.new(fedex_credentials) }
     let(:pickup_location) do
       {:name => "Sender", :company => "Company", :phone_number => "555-555-5555 ", :address => "Main Street",
        :city => "Mumbai", :state => "MH", :postal_code => "400012", :country_code => "IN"}
